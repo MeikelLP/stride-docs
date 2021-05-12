@@ -1,5 +1,5 @@
 import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
+import './styles/index.sass'
 
 /**
  * Client app enhancement file.
