@@ -1,6 +1,14 @@
 import Buefy from 'buefy'
 import './styles/index.sass'
 
+import pageComponents from '@internal/page-components'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faInfoCircle)
+
 /**
  * Client app enhancement file.
  *
@@ -13,7 +21,17 @@ export default ({
   router, // the router instance for the app
   siteData // site metadata
 }) => {
-  Vue.use(Buefy)
+  // https://github.com/vuejs/vuepress/issues/1173
+  for (const [name, component] of Object.entries(pageComponents)) {
+    Vue.component(name, component)
+  }
+
+  Vue.component('vue-fontawesome', FontAwesomeIcon);
+
+  Vue.use(Buefy, {
+    defaultIconComponent: 'vue-fontawesome',
+    defaultIconPack: 'fas',
+  })
 }
 
 

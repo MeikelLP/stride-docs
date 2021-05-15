@@ -1,5 +1,20 @@
 const { description } = require('../package')
 const path = require('path')
+const fs = require('fs')
+
+const files =  { 
+  'manual': getFiles('manual'), 
+  'api': getFiles('api'), 
+  'ReleaseNotes': getFiles('ReleaseNotes'), 
+  'tutorials': getFiles('tutorials')
+}
+
+function getFiles (dir) {
+  return fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name)
+}
 
 module.exports = {
   configureWebpack: {
@@ -58,6 +73,15 @@ module.exports = {
         text: 'Tutorials',
         link: 'tutorials/index.html'
       }
+    ],
+    files,
+    sidebar: [
+      { title: 'Manual', items: [
+        ...files['manual'].map(x => {return {title: camelize(x).replace('-', ' '), link: `/manual/${x}`}}),
+        { title: 'Requirements', link: '/manual/requirements' },
+        { title: 'Stride for Unity® developers', link: '/manual/stride-for-unity-developers' },
+        { title: 'Stride Launcher', link: '/manual/stride-launcher' }
+      ]}
     ]
   },
   markdown: {
@@ -108,4 +132,10 @@ module.exports = {
       }
     }
   }
+}
+
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word) {
+    return word.toUpperCase();
+  }).replace(/\s+/g, '');
 }

@@ -3,19 +3,20 @@
     <b-navbar wrapper-class="container" type="is-light">
         <template #brand>
           <b-navbar-item tag="a" href="//stride3d.net">
+            <img src="/assets/media/logo.svg" alt="Stride3D"/>
           </b-navbar-item>
         </template>
         <template #start>
-            <b-navbar-item href="/manual">
+            <b-navbar-item tag="router-link" to="/manual">
                 Manual
             </b-navbar-item>
-            <b-navbar-item href="/api">
+            <b-navbar-item tag="router-link" to="/api">
                 API
             </b-navbar-item>
-            <b-navbar-item href="/ReleaseNotes">
+            <b-navbar-item tag="router-link" to="/ReleaseNotes">
                 Release Notes
             </b-navbar-item>
-            <b-navbar-item href="/tutorials">
+            <b-navbar-item tag="router-link" to="/tutorials">
                 Tutorials
             </b-navbar-item>
         </template>
@@ -28,10 +29,36 @@
         </div>
       </div>
     </header>
-    <main class="section">
-      <div class="container">
-        <div class="content">
-          <Content/>
+    <main class="documentation">
+      <div class="sidebar-bg"></div>
+      <div class="container is-fullhd docs-template-horizontal">
+        <aside class="sidebar">
+          <b-sidebar
+              position="static"
+              mobile="fullwidth"
+              type="is-light"
+              :fullheight="true"
+              open
+          >
+            <b-menu class="is-custom-mobile">
+              <b-menu-list :label="item.title" v-for="item in $themeConfig.sidebar" :key="item.title">
+                <b-menu-item 
+                  v-for="subItem in item.items" 
+                  :key="subItem.title"
+                  :icon="subItem.icon" 
+                  :label="subItem.title"
+                  :tag="subItem.link ? 'router-link' : undefined"
+                  :to="subItem.link"></b-menu-item>
+              </b-menu-list>
+            </b-menu>
+          </b-sidebar>
+        </aside>
+        <div class="docs-main">
+          <div class="docs-main-container">
+            <div class="content">
+              <Content/>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -40,40 +67,6 @@
         <p v-html="$themeConfig.footer"/>
       </div>
     </footer>
-    <div class="sidebar-page">
-      <section class="sidebar-layout">
-        <b-sidebar
-            position="fixed"
-            mobile="fullwidth"
-            type="is-light"
-            :fullheight="true"
-            open
-        >
-          <div class="p-1">
-            <b-menu class="is-custom-mobile">
-              <b-menu-list>
-                <b-menu-item icon="information-outline" label="Info"></b-menu-item>
-                <b-menu-item active expanded icon="settings" label="Administrator">
-                  <b-menu-item icon="account" label="Users"></b-menu-item>
-                  <b-menu-item icon="cellphone-link" label="Devices"></b-menu-item>
-                  <b-menu-item icon="cash-multiple" label="Payments" disabled></b-menu-item>
-                </b-menu-item>
-                <b-menu-item icon="account" label="My Account">
-                  <b-menu-item icon="account-box" label="Account data"></b-menu-item>
-                  <b-menu-item icon="home-account" label="Addresses"></b-menu-item>
-                </b-menu-item>
-              </b-menu-list>
-              <b-menu-list>
-                <b-menu-item label="Expo" icon="link"></b-menu-item>
-              </b-menu-list>
-              <b-menu-list label="Actions">
-                <b-menu-item icon="logout" label="Logout"></b-menu-item>
-              </b-menu-list>
-            </b-menu>
-          </div>
-        </b-sidebar>
-      </section>
-    </div>
   </div>
 </template>
 
@@ -84,7 +77,40 @@ export default {
 </script>
 
 <style lang="sass">
-.sidebar-content
-  margin-top: 52px
+@import "~bulma/sass/utilities/derived-variables"
 
+.sidebar-bg
+  position: absolute
+  bottom: 0
+  right: 50%
+  left: 0
+  top: 0
+  background: $light
+
+.documentation .docs-template-horizontal
+    position: relative
+    display: flex
+    flex-direction: row
+    flex: 1
+
+.sidebar
+  display: flex
+  flex-direction: column
+  flex-shrink: 0
+  width: 16rem
+  padding: 3rem 1rem
+  background: #f5f5f5
+
+.documentation
+  position: relative
+
+.docs-main
+  position: relative
+  background: #fff
+  overflow: hidden
+  width: 100%
+  min-height: 100vh 
+
+.docs-main-container
+    padding: 3rem
 </style>

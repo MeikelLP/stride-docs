@@ -2,13 +2,13 @@
 
 Stride and Unity® both use C# and share many concepts, with a few major differences.
 
-![Stride for Unity® developers](media/stride-vs-unity-opening-image.png)
+![Stride for Unity® developers](./media/stride-vs-unity-opening-image.png)
 
 ## Editor
 
 The Stride editor is **Game Studio**. This is the equivalent of the Unity® Editor.
 
-![Stride and Unity®  interface comparison](media/stride-vs-unity-interface-comparison.png)
+![Stride and Unity®  interface comparison](./media/stride-vs-unity-interface-comparison.png)
 
 *Unity® screenshot taken from [Calling a web-service from a Unity3D scene](http://through-the-interface.typepad.com/through_the_interface/2012/04/calling-a-web-service-from-a-unity3d-scene.html) by Kean Walmsley.*
 
@@ -63,7 +63,7 @@ For more information about project structure in Stride, including advice about h
 
 You can open the project directory from **Project > Show in explorer** in Game Studio.
 
-![Open project directory from Game Studio](media/stride-vs-unity-open-project-in-windows-explorer.png)
+![Open project directory from Game Studio](./media/stride-vs-unity-open-project-in-windows-explorer.png)
 
 ## Game settings
 
@@ -80,7 +80,7 @@ Stride saves global settings in a single asset, the **Game Settings** asset. You
 
 To use the Game Settings asset, in the **Asset View**, select **GameSettings** and view its properties in the **Property Grid**.
 
-![Game settings](media/game-settings.png)
+![Game settings](./media/game-settings.png)
 
 ## Scenes
 
@@ -92,9 +92,9 @@ You can have multiple scenes in your project. Stride loads the default scene at 
 
 To set the default scene:
 
-1. In the **GameSettings** properties, next to **Default Scene**, click ![Hand icon](media/hand-icon.png) (**Select an asset**).
+1. In the **GameSettings** properties, next to **Default Scene**, click ![Hand icon](/assets/media/hand-icon.png) (**Select an asset**).
 
-    ![Set default scene](media/stride-vs-unity-game-settings-default-scene.png)
+    ![Set default scene](./media/stride-vs-unity-game-settings-default-scene.png)
 
     The **Select an asset** window opens.
 
@@ -106,7 +106,7 @@ For more information about scenes, see [Scenes](../game-studio/scenes.md).
 
 In Unity®, objects in the scene are called **GameObjects**. In Stride, they're called **entities**.
 
-![Entities in Stride](media/stride-vs-unity-entities.jpg)
+![Entities in Stride](./media/stride-vs-unity-entities.jpg)
 
 Like GameObjects, entities are carriers for components such as transform components, model components, audio components, and so on. If you're used to working with GameObjects in Unity®, you should have no problem using entities in Game Studio.
 
@@ -119,13 +119,13 @@ To add a component to entity in Game Studio:
 1. Select the entity you want to add the component to.
 2. In the **Property Grid** (on the right by default), click **Add component** and select the component from the drop-down list.
 
-    ![Add component](media/stride-vs-unity-add-component-to-entity.png)
+    ![Add component](./media/stride-vs-unity-add-component-to-entity.png)
 
 ### Transform component
 
 Like GameObjects in Unity®, each entity in Stride has a [Transform component](xref:Stride.Engine.TransformComponent) which sets its position, rotation, and scale in the world.
 
-![Transform component](media/stride-vs-unity-entity-transform-component.png)
+![Transform component](./media/stride-vs-unity-entity-transform-component.png)
 
 Even empty entities have a Transform component, because every entity in the scene must have a position.
 
@@ -172,7 +172,7 @@ In Unity®, you select an asset in the **project browser** and edit its properti
 
 Stride is similar. You select an asset in the **Asset View** and edit its properties in the **Property Grid**.
 
-![Asset and properties](media/asset-and-properties.png)
+![Asset and properties](./media/asset-and-properties.png)
 
 For certain types of asset, Game Studio also has dedicated editors:
 
@@ -191,7 +191,7 @@ To open the dedicated editor for these types of asset:
 
 The editor opens in a new tab. You can arrange the tabs how you like, or float them as separate windows, just like tabs in web browsers.
 
-![Dedicated Stride editors](media/stride-vs-unity-different-editors.png)
+![Dedicated Stride editors](./media/stride-vs-unity-different-editors.png)
 
 >[!Note]
 >When you modify resource files outside Game Studio, the corresponding assets update automatically in Game Studio.
@@ -202,7 +202,7 @@ To import an asset, drag it from Explorer to the **Asset View**. You can also cl
 
 As soon as you add an asset to your project, you can edit its properties in the **Property Grid**.
 
-![Add asset](media/stride-vs-unity-add-asset.png)
+![Add asset](./media/stride-vs-unity-add-asset.png)
 
 >[!Note]
 > Unlike Unity®, Stride doesn't automatically copy resource files to the project directory when you import them to projects.
@@ -220,14 +220,15 @@ Like Unity®, Stride supports file formats including:
 
 For more information about assets, see [Assets](../game-studio/assets.md).
 
-> [!Note]
-> * Stride currently doesn't support movie files.
+::: message is-info
+Stride currently doesn't support movie files.
+:::
 
 ## Prefabs
 
 Like Unity®, Stride uses prefabs. Prefabs are "master" versions of objects that you can reuse wherever you need. When you change a prefab, every instance of the prefab changes too.
 
-![Prefabs in Stride](media/stride-vs-unity-prefabs.png)
+![Prefabs in Stride](./media/stride-vs-unity-prefabs.png)
 
 Just like with Unity®, in Stride, you can add prefabs to other prefabs. These are called **nested prefabs**. If you modify a nested prefab, all the dependent prefabs inherit the change automatically.
 
@@ -262,6 +263,7 @@ Stride supports a variety of inputs. The code samples below demonstrate the diff
 For more information about Input in Stride, see [Input](../input/index.md).
 
 ## Unity
+
 ```cs
 void Update()
 {
@@ -455,17 +457,17 @@ Stride saves scripts in a subfolder in the **MyGame.Game** folder in the project
 
 To open a script in the Game Studio script editor, double-click it in the **Asset View**. The script editor has syntax highlighting, auto-completion, and live diagnostics.
 
-![Stride script editor](media/stride-vs-unity-script-editor.png)
+![Stride script editor](./media/stride-vs-unity-script-editor.png)
 
 You can also edit scripts in other IDEs, such as Visual Studio. When you edit a script in an external IDE, Stride reloads them automatically.
 
 If you install the Visual Studio plug-in during the Stride installation, you can open your project in Visual Studio from Game Studio. To do this, in the Game Studio toolbar, click **Open in IDE**.
 
-![Open project in Visual Studio](media/stride-vs-unity-open-project-in-visual-studio.png)
+![Open project in Visual Studio](./media/stride-vs-unity-open-project-in-visual-studio.png)
 
 Alternatively, right-click the script in the **Asset View** and click **Open asset file**:
 
-![Open asset file](media/stride-vs-unity-open-asset-file.png)
+![Open asset file](./media/stride-vs-unity-open-asset-file.png)
 
 ### Event functions (Start, Update, Execute, etc)
 
@@ -543,7 +545,7 @@ Like Unity®, in Stride, you attach scripts to entities by adding them as script
 
 To create a script, click **Add asset** button and select **Scripts**.
 
-![Create script in Stride](media/stride-vs-unity-create-script.png)
+![Create script in Stride](./media/stride-vs-unity-create-script.png)
 
 In Unity®, when you create a `MonoBehaviour` script, it has two base functions: `Start()` and `Update()`. Stride has a [SyncScript](xref:Stride.Engine.SyncScript) that works similarly. Like `MonoBehaviour`, [SyncScript](xref:Stride.Engine.SyncScript) has two methods:
 
@@ -708,11 +710,11 @@ Entity ParentEntity = lightComponent.Entity;
 
 To see the output, in the Game Studio toolbar, under **View**, enable **Output**.
 
-![Enable output](media/enable-output.png)
+![Enable output](./media/enable-output.png)
 
 Game Studio displays in the **Output** tab (at the bottom of Game Studio by default).
 
-![Output tab](media/output-tab.png)
+![Output tab](./media/output-tab.png)
 
 
 ### Print debug messages

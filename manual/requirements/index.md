@@ -1,6 +1,6 @@
 # Requirements
 
-![Requirements](media/requirements.png)
+![Requirements](./media/requirements.png)
 
 To develop projects with Stride, you need:
 
