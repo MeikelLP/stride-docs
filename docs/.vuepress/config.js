@@ -1,12 +1,12 @@
-const { description } = require('../package')
+const { description } = require('../../package')
 const path = require('path')
 const fs = require('fs')
 
 const files =  { 
-  'manual': getFiles('manual'), 
-  'api': getFiles('api'), 
-  'ReleaseNotes': getFiles('ReleaseNotes'), 
-  'tutorials': getFiles('tutorials')
+  'manual': getFiles('docs/manual'), 
+  'api': getFiles('docs/api'), 
+  'ReleaseNotes': getFiles('docs/ReleaseNotes'), 
+  'tutorials': getFiles('docs/tutorials')
 }
 
 function getFiles (dir) {
@@ -24,7 +24,6 @@ module.exports = {
       }
     }
   },
-  theme: '.',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
@@ -51,42 +50,16 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
-    editLinks: false,
-    docsDir: '',
-    editLinkText: '',
-    lastUpdated: false,
-    nav: [
-      {
-        text: 'Manual',
-        link: '/manual/index.html',
-      },
-      {
-        text: 'API',
-        link: '/api/index.html'
-      },
-      {
-        text: 'Release Notes',
-        link: 'ReleaseNotes/index.html'
-      },
-      {
-        text: 'Tutorials',
-        link: 'tutorials/index.html'
-      }
-    ],
     files,
     sidebar: [
       { title: 'Manual', items: [
-        ...files['manual'].map(x => {return {title: camelize(x).replace('-', ' '), link: `/manual/${x}`}}),
-        { title: 'Requirements', link: '/manual/requirements' },
-        { title: 'Stride for Unity® developers', link: '/manual/stride-for-unity-developers' },
-        { title: 'Stride Launcher', link: '/manual/stride-launcher' }
+        ...files['manual'].map(x => {return {title: camelize(x).replace('-', ' '), link: `/manual/${x}`}})
       ]}
     ]
   },
   markdown: {
     extendMarkdown: md => {
-      md.use(require('markdown-it-include'))
+      md.use(require('markdown-it-include'), 'docs')
       md.use(require('markdown-it-container'), 'message', {
         validate: function(params) {
           return params.trim().match(/^message( [\S]+)?(.*)$/);
@@ -137,5 +110,5 @@ module.exports = {
 function camelize(str) {
   return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word) {
     return word.toUpperCase();
-  }).replace(/\s+/g, '');
+  }).replace(/\s+/g, '').replace('-', ' ');
 }
