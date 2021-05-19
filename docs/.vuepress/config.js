@@ -1,20 +1,5 @@
 const { description } = require('../../package')
 const path = require('path')
-const fs = require('fs')
-
-const files =  { 
-  'manual': getFiles('docs/manual'), 
-  'api': getFiles('docs/api'), 
-  'ReleaseNotes': getFiles('docs/ReleaseNotes'), 
-  'tutorials': getFiles('docs/tutorials')
-}
-
-function getFiles (dir) {
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name)
-}
 
 module.exports = {
   configureWebpack: {
@@ -27,7 +12,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Vuepress Docs Boilerplate',
+  title: 'Stride3D Documentation',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -49,14 +34,6 @@ module.exports = {
    *
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
-  themeConfig: {
-    files,
-    sidebar: [
-      { title: 'Manual', items: [
-        ...files['manual'].map(x => {return {title: camelize(x).replace('-', ' '), link: `/manual/${x}`}})
-      ]}
-    ]
-  },
   markdown: {
     extendMarkdown: md => {
       md.use(require('markdown-it-include'), 'docs')
@@ -85,9 +62,10 @@ module.exports = {
    */
   plugins: [
     '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom',
+    '@vuepress/last-updated',
+    '@vuepress/nprogress'
   ],
-  chainWebpack(config, isServer) {
+  chainWebpack(config) {
     for (const lang of ["sass", "scss"]) {
       for (const name of ["modules", "normal"]) {
         const rule = config.module.rule(lang).oneOf(name);
@@ -105,10 +83,4 @@ module.exports = {
       }
     }
   }
-}
-
-function camelize(str) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word) {
-    return word.toUpperCase();
-  }).replace(/\s+/g, '').replace('-', ' ');
 }

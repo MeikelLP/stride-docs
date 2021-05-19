@@ -9,7 +9,7 @@
   },
   "repository": "https://github.com/MeikelLP/stride-docs.git/Stride Documentation",
   "scripts": {
-    "dev": "vuepress dev ./docs",
+    "dev": "vuepress dev ./docs --temp .temp",
     "build": "vuepress build ./docs"
   },
   "license": "MIT",
